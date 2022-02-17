@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoice.store');
 Route::get('/invoices', [InvoiceController::class, 'all_invoices'])->name('invoices');
+Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoice.create');
