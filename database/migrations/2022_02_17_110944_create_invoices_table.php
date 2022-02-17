@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->float('amount');
             $table->float('tax');
-            $table->float('total');
+            $table->float('total')->nullable();
             $table->timestamps();
         });
     }
