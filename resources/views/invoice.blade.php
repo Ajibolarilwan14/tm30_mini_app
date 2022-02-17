@@ -11,10 +11,20 @@
     
     <form action="{{ route('invoice.store') }}" method="post">
         @csrf
-        <div class="col-md-6">
-            <input type="text" class="form-control" name="amount" id="amount" placeholder="amount">
-            <input type="text" class="form-control" name="tax" id="tax" placeholder="tax">
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" {{ old('amount') }} name="amount" id="amount" placeholder="amount">
+                    @error('amount')
+                        <p class="font-weight-bold text-danger">{{ $message }}</p>
+                    @enderror
+                    <input type="text" class="form-control mt-2 mb-3" {{ old('tax') }} name="tax" id="tax" placeholder="tax">
+                    @error('tax')
+                        <p class="font-weight-bold text-danger">{{ $message }}</p>
+                    @enderror
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
         </div>
     </form>
 

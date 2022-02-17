@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Resources\InvoiceResource;
+use App\Http\Controllers\InvoiceController\InvoiceController;
+use App\Models\Invoice;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route::apiResource('/invoices', [InvoiceController::class, 'store'])->name('invoice.store');
+Route::get('/invoices', [InvoiceController::class, 'all_invoices'])->name('invoices');
+Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoice.store');
+Route::get('/invoices', function(){
+    return Invoice::all();
+});
+
+

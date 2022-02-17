@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    // return view('invoice');
+    dd(csrf_token());
 });
 
 Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoice.store');
-Route::get('/invoices', [InvoiceController::class, 'all_invoices'])->name('invoices');
+Route::get('/invoices/all', [InvoiceController::class, 'all_invoices'])->name('invoices');
 Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoice.create');

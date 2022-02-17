@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers\InvoiceController;
 
-use App\Http\Controllers\Controller;
 use App\Models\Invoice;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class InvoiceController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
-            'total' => 'required',
-            'amount' => 'required',
-            'tax' => 'required'
-        ]);
+
+        // $invoice = Invoice::create($request->all());
 
         $amount = $request->amount;
         $tax = $request->tax;
@@ -29,14 +25,17 @@ class InvoiceController extends Controller
 
         $invoice->save();
 
-        return redirect()->back();
+        // return response("invoice created successfully", 201);
+
+        return response()->json($invoice, 201);
+        // return response()->json(201);
 
     }
 
     public function all_invoices()
     {
-        $invoice = Invoice::latest();
+        $invoice = Invoice::latest()->paginate(10);
 
-        dd($invoice);
+        return response()->json($invoice, 200);
     }
 }
