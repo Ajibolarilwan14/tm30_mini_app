@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('invoice_items', function (Blueprint $table) {
             $table->id();
+            $table->string('item_description');
+            $table->enum('invoice_status', ['paid', 'pending']);
             $table->timestamps();
         });
     }
